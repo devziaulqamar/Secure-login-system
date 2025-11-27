@@ -1,0 +1,171 @@
+{
+	"info": {
+		"name": "Secure Login System API",
+		"description": "API collection for secure login system with OTP verification",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Register (Signup)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"SecurePass123!\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/signup",
+					"host": ["{{base_url}}"],
+					"path": ["api", "auth", "signup"]
+				},
+				"description": "Register a new user. OTP will be sent to email."
+			}
+		},
+		{
+			"name": "2. Verify OTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"john@example.com\",\n  \"otp\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/verify-otp",
+					"host": ["{{base_url}}"],
+					"path": ["api", "auth", "verify-otp"]
+				},
+				"description": "Verify OTP sent to email during registration. Returns JWT token."
+			}
+		},
+		{
+			"name": "3. Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"SecurePass123!\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/login",
+					"host": ["{{base_url}}"],
+					"path": ["api", "auth", "login"]
+				},
+				"description": "Login with email and password. User must be verified first."
+			}
+		},
+		{
+			"name": "4. Forgot Password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"john@example.com\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/forgot-password",
+					"host": ["{{base_url}}"],
+					"path": ["api", "auth", "forgot-password"]
+				},
+				"description": "Request password reset. OTP will be sent to email."
+			}
+		},
+		{
+			"name": "5. Verify Reset OTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"john@example.com\",\n  \"otp\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/verify-reset-otp",
+					"host": ["{{base_url}}"],
+					"path": ["api", "auth", "verify-reset-otp"]
+				},
+				"description": "Verify OTP for password reset. Must be done before setting new password."
+			}
+		},
+		{
+			"name": "6. Set New Password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"john@example.com\",\n  \"newPassword\": \"NewSecurePass123!\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/set-new-password",
+					"host": ["{{base_url}}"],
+					"path": ["api", "auth", "set-new-password"]
+				},
+				"description": "Set new password after OTP verification. Returns JWT token."
+			}
+		},
+		{
+			"name": "7. Resend OTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"john@example.com\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/resend-otp",
+					"host": ["{{base_url}}"],
+					"path": ["api", "auth", "resend-otp"]
+				},
+				"description": "Resend OTP to email for verification."
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}
+
