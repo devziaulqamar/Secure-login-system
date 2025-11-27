@@ -1,0 +1,73 @@
+# Secure Login System API - cURL Commands
+# Base URL: http://localhost:5000
+# Update the base URL if your server runs on a different port
+
+# ============================================
+# 1. Register (Signup)
+# ============================================
+curl -X POST http://localhost:5000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "SecurePass123!"
+  }'
+
+# ============================================
+# 2. Verify OTP
+# ============================================
+curl -X POST http://localhost:5000/api/auth/verify-otp \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "otp": "123456"
+  }'
+
+# ============================================
+# 3. Login
+# ============================================
+curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "password": "SecurePass123!"
+  }'
+
+# ============================================
+# 4. Forgot Password
+# ============================================
+curl -X POST http://localhost:5000/api/auth/forgot-password \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com"
+  }'
+
+# ============================================
+# 5. Verify Reset OTP
+# ============================================
+curl -X POST http://localhost:5000/api/auth/verify-reset-otp \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "otp": "123456"
+  }'
+
+# ============================================
+# 6. Set New Password
+# ============================================
+curl -X POST http://localhost:5000/api/auth/set-new-password \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "newPassword": "NewSecurePass123!"
+  }'
+
+# ============================================
+# 7. Resend OTP
+# ============================================
+curl -X POST http://localhost:5000/api/auth/resend-otp \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com"
+  }'
+
