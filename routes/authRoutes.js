@@ -8,7 +8,7 @@ import {
   verifyResetOTP,
   setNewPassword,
   resendOTP,
-} from "../controllers/authController.controller.js";
+} from "../controllers/authController.js";
 
 router.post("/signup", register);
 router.post("/verify-otp", verifyOTP);
